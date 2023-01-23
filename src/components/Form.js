@@ -1,24 +1,16 @@
-import React, { useState } from 'react';
 import Tilt from 'react-parallax-tilt';
 
-function Form() {
-  const [inputValue, setInputValue] = useState('');
-
-  const handleSubmit = event => {
-    event.preventDefault();
-    console.log(inputValue);
-  };
-
+function Form({ handleSubmit, handleInput, inputValue }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-9/12 mx-auto flex  justify-center  bg-blend-luminosity p-5 rounded-md"
+      className="w-9/12 mt-44 mx-auto flex justify-center bg-blend-luminosity p-5 rounded-md"
     >
       <input
         className="w-4/5 p-3 mr-3 "
         type="text"
         value={inputValue}
-        onChange={e => setInputValue(e.target.value)}
+        onChange={handleInput}
       />
       <Tilt
         className="w-1/5"
@@ -32,7 +24,7 @@ function Form() {
           className="border border-black font-bold text-slate-300 text-xl bg-b-left"
           type="submit"
         >
-          Submit
+          Detect
         </button>
       </Tilt>
     </form>
