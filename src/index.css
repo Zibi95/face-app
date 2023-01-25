@@ -6,6 +6,7 @@ body {
 
   background: #161265ab;
   background: linear-gradient(90deg, #161265 33%, #097930 66%, #00d4ff 100%);
+  overflow: hidden;
 }
 
 code {
