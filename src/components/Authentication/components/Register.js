@@ -13,9 +13,31 @@ const Register = ({ userInfo }) => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    setUser('Zibi');
-    navigate('/main');
-    // const confirmPassword = confirmPassword.current.value;
+    const passwordMatches = password === confirmPassword;
+    const credentials = {
+      email,
+      password,
+      name,
+    };
+    passwordMatches &&
+      fetch('http://localhost:3000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data !== 'brakuje danych') {
+            const { name } = data[data.length - 1];
+            setUser(name);
+            navigate('/main');
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
   };
 
   return (

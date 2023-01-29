@@ -3,9 +3,7 @@ import Form from '../../components/Form';
 import DetectionImage from '../../components/DetectionImage';
 import '../../App.css';
 
-// FACE DETECTION API
-
-function Main() {
+function Main({ user }) {
   const [inputValue, setInputValue] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [box, setBox] = useState([]);
@@ -31,6 +29,8 @@ function Main() {
       ]);
     });
   };
+
+  // FACE DETECTION API
 
   const raw = JSON.stringify({
     user_app_id: {
@@ -70,13 +70,11 @@ function Main() {
       .catch(error => console.log('error', error));
   };
 
+  // **********************************************
+
   const handleInput = event => {
     setInputValue(event.target.value);
   };
-
-  // NOTE: MODEL_VERSION_ID is optional, you can also call prediction with the MODEL_ID only
-  // https://api.clarifai.com/v2/models/{YOUR_MODEL_ID}/outputs
-  // this will default to the latest version_id
 
   return (
     <>

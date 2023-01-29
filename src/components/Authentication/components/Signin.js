@@ -11,9 +11,31 @@ const Signin = ({ userInfo }) => {
   const { user, setUser } = userInfo;
 
   const handleSubmit = () => {
-    setUser('Zibi');
-    navigate('/main');
-    // const confirmPassword = confirmPassword.current.value;
+    const credentials = {
+      email,
+      password,
+    };
+
+    fetch('http://localhost:3000/signin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(credentials),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data !== 'error logging in') {
+          setUser(data);
+          navigate('/main');
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+    // setUser('Zibi');
+    // navigate('/main');
   };
 
   return (

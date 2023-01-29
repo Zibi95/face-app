@@ -21,7 +21,7 @@ function App() {
           path="/register"
           element={<Authentication userInfo={userInfo} />}
         />
-        <Route path="/main" element={<Main />} />
+        <Route path="/main" element={<Main userInfo={userInfo} />} />
       </Route>
     </Routes>
   );
