@@ -13,40 +13,7 @@ export const Particle = () => {
       id="tsparticles"
       init={particlesInit}
       options={{
-        fullScreen: {
-          enable: true,
-          zIndex: -1,
-          position: 'absolute',
-        },
-        background: {
-          opacity: '0',
-          color: {
-            value: '#0d47a1',
-          },
-        },
-        fpsLimit: 120,
-        interactivity: {
-          events: {
-            onClick: {
-              enable: true,
-              mode: 'push',
-            },
-            onHover: {
-              enable: true,
-              mode: 'repulse',
-            },
-            resize: true,
-          },
-          modes: {
-            push: {
-              quantity: 4,
-            },
-            repulse: {
-              distance: 50,
-              duration: 0.4,
-            },
-          },
-        },
+        fpsLimit: 60,
         particles: {
           color: {
             value: '#ffffff',
@@ -73,7 +40,7 @@ export const Particle = () => {
               enable: true,
               area: 800,
             },
-            value: 80,
+            value: 50,
           },
           opacity: {
             value: 0.5,

@@ -6,7 +6,7 @@ import { Particle } from '../../components/Particle';
 
 const Navbar = ({ userInfo }) => {
   const { user, setUser } = userInfo;
-  console.log(user);
+
   const LoggedIn = (
     <nav className="flex justify-between m-10">
       <Tilt scale={1.5} transitionSpeed={2500}>
@@ -45,9 +45,9 @@ const Navbar = ({ userInfo }) => {
   );
   return (
     <>
-      <Particle />
       {user ? LoggedIn : LoggedOut}
       <Outlet />
+      <Particle />
     </>
   );
 };

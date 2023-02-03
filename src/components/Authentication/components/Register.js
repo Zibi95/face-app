@@ -28,12 +28,13 @@ const Register = ({ userInfo }) => {
         body: JSON.stringify(credentials),
       })
         .then(response => response.json())
-        .then(data => {
-          if (data !== 'brakuje danych') {
-            const { name } = data[data.length - 1];
-            setUser(name);
+        .catch(err => console.log(err))
+        .then(user => {
+          if (Array.isArray(user)) {
+            setUser(user[0]);
             navigate('/main');
           }
+          console.log('Unable to register');
         })
         .catch(err => {
           console.log(err);

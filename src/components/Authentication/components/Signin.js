@@ -24,9 +24,9 @@ const Signin = ({ userInfo }) => {
       body: JSON.stringify(credentials),
     })
       .then(response => response.json())
-      .then(data => {
-        if (data !== 'error logging in') {
-          setUser(data);
+      .then(user => {
+        if (Array.isArray(user)) {
+          setUser(user[0]);
           navigate('/main');
         }
       })

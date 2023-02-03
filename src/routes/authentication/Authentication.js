@@ -3,9 +3,9 @@ import Register from '../../components/Authentication/components/Register';
 import Signin from '../../components/Authentication/components/Signin';
 
 const Authentication = ({ userInfo }) => {
-  const sign = useHref();
+  const endpoint = useHref();
 
-  return sign === '/register' ? (
+  return endpoint === '/register' ? (
     <Register userInfo={userInfo} />
   ) : (
     <Signin userInfo={userInfo} />
