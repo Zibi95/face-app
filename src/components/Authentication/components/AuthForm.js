@@ -3,7 +3,7 @@ import Tilt from 'react-parallax-tilt';
 const AuthForm = ({ inputs, handleSubmit, buttonName, error }) => {
   return (
     <Tilt
-      className="flex flex-col items-center w-1/4 gap-4 px-20 py-24 mx-auto border border-black shadow-2xl"
+      className="flex flex-col mx-auto items-center w-1/4 gap-4 px-20 py-24 border border-black shadow-2xl }"
       tiltAxis="x"
       glareEnable={true}
       glareMaxOpacity={0.1}
@@ -12,7 +12,7 @@ const AuthForm = ({ inputs, handleSubmit, buttonName, error }) => {
       {inputs.map(input => {
         return (
           <div
-            className="w-full mb-1"
+            className="w-full h-full mb-1"
             key={input.label}>
             <label
               htmlFor={input.name}
@@ -37,7 +37,7 @@ const AuthForm = ({ inputs, handleSubmit, buttonName, error }) => {
         className="px-4 py-2 mt-5 mb-10 font-extrabold text-black rounded-lg bg-b-right hover:bg-b-left hover:text-white">
         {buttonName}
       </button>
-      {error && <div className="font-bold text-red-700 text-md">{error}</div>}
+      {error && <div className="text-xl font-bold text-center text-red-700">{error}</div>}
     </Tilt>
   );
 };

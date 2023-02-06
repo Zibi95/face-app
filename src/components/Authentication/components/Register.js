@@ -25,8 +25,13 @@ const Register = ({ setUser, email, password, handleChange }) => {
     if (user === 'Email already used') {
       return setError('Email already in use');
     }
-    setUser(user[0]);
-    return navigate('/main');
+    if (user === 'Not enough data') {
+      return setError('You should fill all the inputs');
+    }
+    if (user) {
+      setUser(user[0]);
+      return navigate('/main');
+    }
   };
 
   const onChangeRegister = event => {
