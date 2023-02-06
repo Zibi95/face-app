@@ -5,12 +5,11 @@ import {
   calculateFaceLocation,
 } from './main.helper';
 // Components
-import Form from '../../components/Form';
+import FormImage from '../../components/FormImage';
 import DetectionImage from '../../components/DetectionImage';
+import { Loader } from '../../components/Loader';
 // Style
 import '../../App.css';
-import { Loader } from '../../components/Loader';
-import { Dna } from 'react-loader-spinner';
 
 function Main({ user }) {
   const [imageUrl, setImageUrl] = useState('');
@@ -46,13 +45,13 @@ function Main({ user }) {
   };
 
   if (status === 'idle' && user) {
-    return <Form handleSubmit={handleSubmit} />;
+    return <FormImage handleSubmit={handleSubmit} />;
   }
 
   if (status === 'loading') {
     return (
       <>
-        <Form handleSubmit={handleSubmit} />
+        <FormImage handleSubmit={handleSubmit} />
         <Loader />
         <DetectionImage hidden={true} imageUrl={imageUrl} box={box} />
       </>
@@ -62,7 +61,7 @@ function Main({ user }) {
   if (status === 'resolved') {
     return (
       <>
-        <Form handleSubmit={handleSubmit} />
+        <FormImage handleSubmit={handleSubmit} />
         <DetectionImage hidden={false} imageUrl={imageUrl} box={box} />
       </>
     );
@@ -71,7 +70,7 @@ function Main({ user }) {
   if (status === 'rejected') {
     return (
       <>
-        <Form handleSubmit={handleSubmit} />
+        <FormImage handleSubmit={handleSubmit} />
         <div className="text-2xl font-bold text-center text-white">
           {error}, try again!
         </div>

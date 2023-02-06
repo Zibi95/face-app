@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import Tilt from 'react-parallax-tilt';
 
-function Form({ handleSubmit }) {
+function FormImage({ handleSubmit }) {
   const [inputValue, setInputValue] = useState('');
 
   return (
@@ -38,4 +38,4 @@ function Form({ handleSubmit }) {
   );
 }
 
-export default Form;
+export default FormImage;
