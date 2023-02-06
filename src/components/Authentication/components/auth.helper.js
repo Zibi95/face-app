@@ -7,7 +7,7 @@ export async function RegisterCall(credentials) {
     body: JSON.stringify(credentials),
   };
   try {
-    const response = await fetch('http://localhost:3000/register', fetchOptions);
+    const response = await fetch('https://face-app-api.onrender.com/register', fetchOptions);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -25,7 +25,7 @@ export async function SigninCall(credentials) {
   };
 
   try {
-    const response = await fetch('http://localhost:3000/signin', fetchOptions);
+    const response = await fetch('https://face-app-api.onrender.com/signin', fetchOptions);
     const data = await response.json();
     return data;
   } catch (error) {

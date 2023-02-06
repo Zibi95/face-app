@@ -13,13 +13,21 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Navbar userInfo={userInfo} />}>
-        <Route index element={<Authentication setUser={setUser} />} />
+      <Route
+        path="/"
+        element={<Navbar userInfo={userInfo} />}>
+        <Route
+          index
+          element={<Authentication setUser={setUser} />}
+        />
         <Route
           path="/register"
           element={<Authentication setUser={setUser} />}
         />
-        <Route path="/main" element={<Main user={user} />} />
+        <Route
+          path="/main"
+          element={<Main user={user} />}
+        />
       </Route>
     </Routes>
   );

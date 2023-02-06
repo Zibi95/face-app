@@ -14,14 +14,13 @@ const Signin = ({ setUser, email, password, handleChange }) => {
       password,
     };
     const user = await SigninCall(credentials);
-    console.log('🚀 ~ file: Signin.js:17 ~ handleSubmit ~ user', user);
-    if (user === "User and password doesn't match") {
+    if (!Array.isArray(user)) {
       return setError("User and password don't match!");
     }
     if (user === 'Not enough data') {
       return setError('You should fill all the inputs');
     }
-    if (user) {
+    if (Array.isArray(user)) {
       setUser(user[0]);
       navigate('/main');
     }
