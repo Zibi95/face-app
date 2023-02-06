@@ -4,18 +4,18 @@ const DetectionImage = ({ imageUrl, box }) => {
   return (
     <>
       {box && imageUrl && (
-        <p className="text-center font-semibold text-2xl text-white">
+        <p className="text-2xl font-semibold text-center text-white">
           Hey I found {box.length} faces on this image
         </p>
       )}
 
-      <div className="flex justify-center relative">
+      <div className="relative flex justify-center">
         <div className="relative">
-          <img className="w-[500px]" id="inputImage" src={imageUrl} alt="" />
+          <img className="h-[500px]" id="inputImage" src={imageUrl} alt="" />
           {box.map((el, i) => (
             <div
               key={i}
-              className="bounding-box flex-shrink-0"
+              className="flex-shrink-0 bounding-box"
               style={{
                 top: el.topRow,
                 right: el.rightCol,

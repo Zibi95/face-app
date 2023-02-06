@@ -16,12 +16,12 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Navbar userInfo={userInfo} />}>
-        <Route index element={<Authentication userInfo={userInfo} />} />
+        <Route index element={<Authentication setUser={setUser} />} />
         <Route
           path="/register"
-          element={<Authentication userInfo={userInfo} />}
+          element={<Authentication setUser={setUser} />}
         />
-        <Route path="/main" element={<Main userInfo={userInfo} />} />
+        <Route path="/main" element={<Main user={user} />} />
       </Route>
     </Routes>
   );

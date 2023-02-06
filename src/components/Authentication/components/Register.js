@@ -2,13 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Tilt from 'react-parallax-tilt';
 
-const Register = ({ userInfo }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const Register = ({ setUser, email, password, handleChange }) => {
   const [name, setName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
-  const { user, setUser } = userInfo;
 
   const navigate = useNavigate();
 
@@ -43,11 +39,11 @@ const Register = ({ userInfo }) => {
 
   return (
     <>
-      <h2 className="text-4xl text-white font-bold mb-4 text-center">
+      <h2 className="mb-4 text-4xl font-bold text-center text-white">
         Register
       </h2>
       <Tilt
-        className="flex items-center gap-4 flex-col w-fit mx-auto shadow-2xl border border-black px-20 py-24"
+        className="flex flex-col items-center gap-4 px-20 py-24 mx-auto border border-black shadow-2xl w-fit"
         tiltAxis="x"
         glareEnable={true}
         glareMaxOpacity={0.1}
@@ -55,38 +51,40 @@ const Register = ({ userInfo }) => {
         glarePosition="all"
       >
         <div className="mb-1">
-          <label className="block text-white font-medium mb-1">Name</label>
+          <label className="block mb-1 font-medium text-white">Name</label>
           <input
-            className="bg-gray-200 p-2 rounded-lg w-full"
+            className="w-full p-2 bg-gray-200 rounded-lg"
             type="text"
             onChange={e => setName(e.target.value)}
             value={name}
           />
         </div>
         <div className="mb-1">
-          <label className="block text-white font-medium mb-1">Email</label>
+          <label className="block mb-1 font-medium text-white">Email</label>
           <input
-            className="bg-gray-200 p-2 rounded-lg w-full"
+            className="w-full p-2 bg-gray-200 rounded-lg"
             type="email"
+            name="email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={handleChange}
           />
         </div>
         <div className="mb-1">
-          <label className="block text-white font-medium mb-1">Password</label>
+          <label className="block mb-1 font-medium text-white">Password</label>
           <input
-            className="bg-gray-200 p-2 rounded-lg w-full"
+            className="w-full p-2 bg-gray-200 rounded-lg"
+            name="password"
             type="password"
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={handleChange}
           />
         </div>
         <div className="mb-5">
-          <label className="block text-white font-medium mb-1">
+          <label className="block mb-1 font-medium text-white">
             Confirm Password
           </label>
           <input
-            className="bg-gray-200 p-2 rounded-lg w-full"
+            className="w-full p-2 bg-gray-200 rounded-lg"
             type="password"
             onChange={e => setConfirmPassword(e.target.value)}
           />
@@ -94,7 +92,7 @@ const Register = ({ userInfo }) => {
 
         <button
           onClick={handleSubmit}
-          className="bg-b-right py-2 px-4 rounded-lg text-black font-extrabold hover:bg-b-left hover:text-white"
+          className="px-4 py-2 font-extrabold text-black rounded-lg bg-b-right hover:bg-b-left hover:text-white"
         >
           Register
         </button>

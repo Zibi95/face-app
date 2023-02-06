@@ -9,51 +9,53 @@ export const Particle = () => {
   }, []);
 
   return (
-    <Particles
-      id="tsparticles"
-      init={particlesInit}
-      options={{
-        fpsLimit: 60,
-        particles: {
-          color: {
-            value: '#ffffff',
-          },
-          links: {
-            color: '#ffffff',
-            distance: 100,
-            enable: true,
-            opacity: 0.5,
-            width: 1,
-          },
-          move: {
-            directions: 'none',
-            enable: true,
-            outModes: {
-              default: 'bounce',
+    <div className="w-full h-full bg-cover">
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        options={{
+          fpsLimit: 60,
+          particles: {
+            color: {
+              value: '#ffffff',
             },
-            random: false,
-            speed: 3,
-            straight: false,
-          },
-          number: {
-            density: {
+            links: {
+              color: '#ffffff',
+              distance: 100,
               enable: true,
-              area: 800,
+              opacity: 0.5,
+              width: 1,
             },
-            value: 50,
+            move: {
+              directions: 'none',
+              enable: true,
+              outModes: {
+                default: 'bounce',
+              },
+              random: false,
+              speed: 3,
+              straight: false,
+            },
+            number: {
+              density: {
+                enable: true,
+                area: 800,
+              },
+              value: 50,
+            },
+            opacity: {
+              value: 0.5,
+            },
+            shape: {
+              type: 'circle',
+            },
+            size: {
+              value: { min: 1, max: 3 },
+            },
           },
-          opacity: {
-            value: 0.5,
-          },
-          shape: {
-            type: 'circle',
-          },
-          size: {
-            value: { min: 1, max: 5 },
-          },
-        },
-        detectRetina: true,
-      }}
-    />
+          detectRetina: true,
+        }}
+      />
+    </div>
   );
 };
