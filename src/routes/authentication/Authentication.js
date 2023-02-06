@@ -17,10 +17,8 @@ const Authentication = ({ setUser }) => {
   };
 
   useEffect(() => {
-    return () => {
-      initialState();
-    };
-  }, []);
+    initialState();
+  }, [endpoint]);
 
   const handleChange = event => {
     event.target.name === 'email' ? setEmail(event.target.value) : setPassword(event.target.value);

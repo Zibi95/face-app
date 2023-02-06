@@ -1,33 +1,24 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { SigninCall } from './auth.helper';
 import AuthForm from './AuthForm';
 
 const Signin = ({ setUser, email, password, handleChange }) => {
   const navigate = useNavigate();
+  const [error, setError] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const credentials = {
       email,
       password,
     };
-
-    fetch('http://localhost:3000/signin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(credentials),
-    })
-      .then(response => response.json())
-      .then(user => {
-        if (Array.isArray(user)) {
-          setUser(user[0]);
-          navigate('/main');
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    const user = await SigninCall(credentials);
+    if (user === "User and password doesn't match") {
+      return setError("User and password don't match");
+    }
+    setUser(user[0]);
+    navigate('/main');
   };
 
   const inputs = [
@@ -54,6 +45,7 @@ const Signin = ({ setUser, email, password, handleChange }) => {
         inputs={inputs}
         buttonName={'Login'}
         handleSubmit={handleSubmit}
+        error={error}
       />
     </>
   );
