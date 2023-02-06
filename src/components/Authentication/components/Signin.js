@@ -1,6 +1,6 @@
-import Tilt from 'react-parallax-tilt';
 import { useNavigate } from 'react-router-dom';
-import AuthForm from '../../AuthForm';
+
+import AuthForm from './AuthForm';
 
 const Signin = ({ setUser, email, password, handleChange }) => {
   const navigate = useNavigate();
@@ -28,9 +28,6 @@ const Signin = ({ setUser, email, password, handleChange }) => {
       .catch(err => {
         console.log(err);
       });
-
-    // setUser('Zibi');
-    // navigate('/main');
   };
 
   const inputs = [
@@ -52,9 +49,7 @@ const Signin = ({ setUser, email, password, handleChange }) => {
 
   return (
     <>
-      <h2 className="mb-4 text-4xl font-bold text-center text-white">
-        Sign In
-      </h2>
+      <h2 className="mb-4 text-4xl font-bold text-center text-white">Sign In</h2>
       <AuthForm
         inputs={inputs}
         buttonName={'Login'}

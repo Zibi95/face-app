@@ -1,40 +1,36 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Tilt from 'react-parallax-tilt';
-import AuthForm from '../../AuthForm';
-const Register = ({ setUser, email, password, handleChange }) => {
-  const [name, setName] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
 
+import { RegisterCall } from './auth.helper';
+import AuthForm from './AuthForm';
+
+const Register = ({ setUser, email, password, handleChange }) => {
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  const [name, setName] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = async () => {
     const passwordMatches = password === confirmPassword;
     const credentials = {
       email,
       password,
       name,
     };
-    passwordMatches &&
-      fetch('http://localhost:3000/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(credentials),
-      })
-        .then(response => response.json())
-        .catch(err => console.log(err))
-        .then(user => {
-          if (Array.isArray(user)) {
-            setUser(user[0]);
-            navigate('/main');
-          }
-          console.log('Unable to register');
-        })
-        .catch(err => {
-          console.log(err);
-        });
+    if (!passwordMatches) {
+      return setError("Passwords don't match");
+    }
+    const user = await RegisterCall(credentials);
+    if (user === 'Email already used') {
+      return setError('Email already in use');
+    }
+    setUser(user[0]);
+    return navigate('/main');
+  };
+
+  const onChangeRegister = event => {
+    event.target.name === 'name' ? setName(event.target.value) : setConfirmPassword(event.target.value);
   };
 
   const inputs = [
@@ -43,7 +39,7 @@ const Register = ({ setUser, email, password, handleChange }) => {
       type: 'text',
       name: 'name',
       value: name,
-      onChange: setName,
+      onChange: onChangeRegister,
     },
     {
       label: 'Email',
@@ -64,19 +60,18 @@ const Register = ({ setUser, email, password, handleChange }) => {
       type: 'password',
       name: 'confirm password',
       value: confirmPassword,
-      onChange: setConfirmPassword,
+      onChange: onChangeRegister,
     },
   ];
 
   return (
     <>
-      <h2 className="mb-4 text-4xl font-bold text-center text-white">
-        Register
-      </h2>
+      <h2 className="mb-4 text-4xl font-bold text-center text-white">Register</h2>
       <AuthForm
         inputs={inputs}
         buttonName={'Register'}
         handleSubmit={handleSubmit}
+        error={error}
       />
     </>
   );

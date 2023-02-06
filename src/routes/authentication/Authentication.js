@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHref } from 'react-router-dom';
 
 // Components
@@ -11,10 +11,19 @@ const Authentication = ({ setUser }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const initialState = () => {
+    setEmail('');
+    setPassword('');
+  };
+
+  useEffect(() => {
+    return () => {
+      initialState();
+    };
+  }, []);
+
   const handleChange = event => {
-    event.target.name === 'email'
-      ? setEmail(event.target.value)
-      : setPassword(event.target.value);
+    event.target.name === 'email' ? setEmail(event.target.value) : setPassword(event.target.value);
   };
 
   return endpoint === '/register' ? (
