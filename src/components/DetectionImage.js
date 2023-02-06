@@ -3,12 +3,6 @@ import '../App.css';
 const DetectionImage = ({ imageUrl, box }) => {
   return (
     <>
-      {box && imageUrl && (
-        <p className="text-2xl font-semibold text-center text-white">
-          Hey I found {box.length} faces on this image
-        </p>
-      )}
-
       <div className="relative flex justify-center">
         <div className="relative">
           <img className="h-[500px]" id="inputImage" src={imageUrl} alt="" />

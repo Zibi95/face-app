@@ -8,7 +8,7 @@ function calculateFaceLocation(data, setBox) {
   const width = Number(image.width);
   const height = Number(image.height);
 
-  const clarifaiFaces = data.outputs[0].data.regions.map(region => region);
+  const clarifaiFaces = data.outputs[0].data.regions?.map(region => region);
 
   clarifaiFaces.forEach(region => {
     const { top_row, right_col, bottom_row, left_col } =
@@ -26,6 +26,24 @@ function calculateFaceLocation(data, setBox) {
   });
 }
 
+async function fetchClarifaiFaceDetection(imageUrl) {
+  const postOptions = {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ imageUrl }),
+  };
+  try {
+    const response = await fetch('http://localhost:3000/imageurl', postOptions);
+    const data = await response.json();
+
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 function Main({ user }) {
   const [imageUrl, setImageUrl] = useState('');
   const [box, setBox] = useState([]);
@@ -39,21 +57,13 @@ function Main({ user }) {
     initialState();
   }, []);
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-
+    setBox([]);
     setImageUrl(event.target[0].value);
 
-    fetch('http://localhost:3000/imageurl', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ imageUrl }),
-    })
-      .then(response => response.json())
-      .then(result => calculateFaceLocation(result, setBox))
-      .catch(error => console.log('error', error));
+    const data = await fetchClarifaiFaceDetection(imageUrl);
+    if (data !== 'Fetch failed') calculateFaceLocation(data, setBox);
   };
 
   const loggedIn = (

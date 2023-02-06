@@ -6,8 +6,6 @@ import Navbar from './routes/navbar/Navbar';
 import Authentication from './routes/authentication/Authentication';
 import Main from './routes/main/Main';
 
-// FACE DETECTION API
-
 function App() {
   const [user, setUser] = useState('');
 
