@@ -8,7 +8,6 @@ import Main from './routes/main/Main';
 
 function App() {
   const [user, setUser] = useState('');
-
   const userInfo = { user, setUser };
 
   return (
