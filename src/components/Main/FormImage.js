@@ -11,8 +11,7 @@ function FormImage({ handleSubmit }) {
         handleSubmit(event);
         setInputValue('');
       }}
-      className="flex justify-center w-9/12 p-5 mx-auto rounded-md mt-44 bg-blend-luminosity"
-    >
+      className="flex justify-center w-9/12 p-5 mx-auto rounded-md mt-44 bg-blend-luminosity">
       <input
         className="w-4/5 p-3 mr-3 "
         type="text"
@@ -25,12 +24,10 @@ function FormImage({ handleSubmit }) {
         glareEnable={true}
         glareMaxOpacity={0.4}
         glareColor="red"
-        glarePosition="all"
-      >
+        glarePosition="all">
         <button
           className="text-xl font-bold border border-black text-slate-300 bg-b-left"
-          type="submit"
-        >
+          type="submit">
           Detect
         </button>
       </Tilt>

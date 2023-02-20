@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 // Helper functions
 import { fetchClarifaiFaceDetection, calculateFaceLocation } from './main.helper';
 // Components
-import FormImage from '../../components/FormImage';
-import DetectionImage from '../../components/DetectionImage';
+import FormImage from '../../components/Main/FormImage';
+import DetectionImage from '../../components/Main/DetectionImage';
 import { Loader } from '../../components/Loader';
 // Style
 import '../../App.css';
@@ -34,8 +34,7 @@ function Main({ user }) {
     setImageUrl(imageUrl);
     setStatus('loading');
     const data = await fetchClarifaiFaceDetection(imageUrl);
-    console.log(data);
-    if (data === 'Fetch failed') {
+    if (!data.status) {
       setStatus('rejected');
       return setError(data);
     }

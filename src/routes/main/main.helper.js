@@ -8,7 +8,7 @@ export async function fetchClarifaiFaceDetection(imageUrl) {
     body: JSON.stringify({ imageUrl }),
   };
   try {
-    if (!imageUrl) return 'I need an image!';
+    if (!imageUrl) return 'I need an image url';
     const response = await fetch('http://localhost:3000/imageurl', postOptions);
     const data = await response.json();
     return data;

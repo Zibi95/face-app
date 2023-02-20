@@ -3,17 +3,20 @@ import { useNavigate } from 'react-router-dom';
 
 import { SigninCall } from './auth.helper';
 import AuthForm from './AuthForm';
+import { Loader } from '../../Loader';
 
-const Signin = ({ setUser, email, password, handleChange }) => {
+const Signin = ({ setUser, email, password, handleChange, loading, setLoading }) => {
   const navigate = useNavigate();
   const [error, setError] = useState('');
 
   const handleSubmit = async () => {
+    setLoading(true);
     const credentials = {
       email,
       password,
     };
     const user = await SigninCall(credentials);
+    setLoading(false);
     if (!Array.isArray(user)) {
       return setError("User and password don't match!");
     }
@@ -52,6 +55,7 @@ const Signin = ({ setUser, email, password, handleChange }) => {
         handleSubmit={handleSubmit}
         error={error}
       />
+      {loading && <Loader />}
     </>
   );
 };

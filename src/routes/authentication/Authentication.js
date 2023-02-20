@@ -9,6 +9,7 @@ const Authentication = ({ setUser }) => {
   const endpoint = useHref();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const initialState = () => {
     setEmail('');
@@ -29,6 +30,8 @@ const Authentication = ({ setUser }) => {
       email={email}
       password={password}
       handleChange={handleChange}
+      loading={loading}
+      setLoading={setLoading}
     />
   ) : (
     <Signin
@@ -36,6 +39,8 @@ const Authentication = ({ setUser }) => {
       email={email}
       password={password}
       handleChange={handleChange}
+      loading={loading}
+      setLoading={setLoading}
     />
   );
 };

@@ -5,8 +5,6 @@ import './App.css';
 import Navbar from './routes/navbar/Navbar';
 import Authentication from './routes/authentication/Authentication';
 import Main from './routes/main/Main';
-import Signin from './components/Authentication/components/Signin';
-import Register from './components/Authentication/components/Register';
 
 function App() {
   const [user, setUser] = useState('');

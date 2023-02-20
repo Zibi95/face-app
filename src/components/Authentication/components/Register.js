@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { RegisterCall } from './auth.helper';
 import AuthForm from './AuthForm';
+import { Loader } from '../../Loader';
 
-const Register = ({ setUser, email, password, handleChange }) => {
+const Register = ({ setUser, email, password, handleChange, loading, setLoading }) => {
   const navigate = useNavigate();
 
   const [name, setName] = useState('');
@@ -12,6 +13,7 @@ const Register = ({ setUser, email, password, handleChange }) => {
   const [error, setError] = useState('');
 
   const handleSubmit = async () => {
+    setLoading(true);
     const passwordMatches = password === confirmPassword;
     const credentials = {
       email,
@@ -19,9 +21,11 @@ const Register = ({ setUser, email, password, handleChange }) => {
       name,
     };
     if (!passwordMatches) {
+      setLoading(false);
       return setError("Passwords don't match");
     }
     const user = await RegisterCall(credentials);
+    setLoading(false);
     if (user === 'Email already used') {
       return setError('Email already in use');
     }
@@ -30,7 +34,7 @@ const Register = ({ setUser, email, password, handleChange }) => {
     }
     if (user) {
       setUser(user[0]);
-      return navigate('/main');
+      return navigate('/');
     }
   };
 
@@ -78,6 +82,7 @@ const Register = ({ setUser, email, password, handleChange }) => {
         handleSubmit={handleSubmit}
         error={error}
       />
+      {loading && <Loader />}
     </>
   );
 };
