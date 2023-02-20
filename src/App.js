@@ -5,6 +5,8 @@ import './App.css';
 import Navbar from './routes/navbar/Navbar';
 import Authentication from './routes/authentication/Authentication';
 import Main from './routes/main/Main';
+import Signin from './components/Authentication/components/Signin';
+import Register from './components/Authentication/components/Register';
 
 function App() {
   const [user, setUser] = useState('');
@@ -18,15 +20,11 @@ function App() {
         element={<Navbar userInfo={userInfo} />}>
         <Route
           index
-          element={<Authentication setUser={setUser} />}
-        />
-        <Route
-          path="/register"
-          element={<Authentication setUser={setUser} />}
-        />
-        <Route
-          path="/main"
           element={<Main user={user} />}
+        />
+        <Route
+          path="authentication/*"
+          element={<Authentication setUser={setUser} />}
         />
       </Route>
     </Routes>

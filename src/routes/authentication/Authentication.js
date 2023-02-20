@@ -7,7 +7,6 @@ import Signin from '../../components/Authentication/components/Signin';
 
 const Authentication = ({ setUser }) => {
   const endpoint = useHref();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -24,7 +23,7 @@ const Authentication = ({ setUser }) => {
     event.target.name === 'email' ? setEmail(event.target.value) : setPassword(event.target.value);
   };
 
-  return endpoint === '/register' ? (
+  return endpoint === '/authentication/register' ? (
     <Register
       setUser={setUser}
       email={email}

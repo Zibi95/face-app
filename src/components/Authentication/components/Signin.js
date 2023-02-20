@@ -22,7 +22,7 @@ const Signin = ({ setUser, email, password, handleChange }) => {
     }
     if (Array.isArray(user)) {
       setUser(user[0]);
-      navigate('/main');
+      navigate('/');
     }
   };
 

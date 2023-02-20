@@ -8,9 +8,9 @@ export async function fetchClarifaiFaceDetection(imageUrl) {
     body: JSON.stringify({ imageUrl }),
   };
   try {
-    const response = await fetch('https://face-app-api.onrender.com/imageurl', postOptions);
+    if (!imageUrl) return 'I need an image!';
+    const response = await fetch('http://localhost:3000/imageurl', postOptions);
     const data = await response.json();
-
     return data;
   } catch (err) {
     console.log(err);
