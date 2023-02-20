@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { SigninCall } from './auth.helper';
 import AuthForm from './AuthForm';
-import { Loader } from '../../Loader';
+import { Loader } from '../Loader';
 
 const Signin = ({ setUser, email, password, handleChange, loading, setLoading }) => {
   const navigate = useNavigate();

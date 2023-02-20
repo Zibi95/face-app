@@ -1,8 +1,6 @@
-import logo from '../../../assets/face-detection.png';
-import Tilt from 'react-parallax-tilt';
 import { Link } from 'react-router-dom';
 
-const LoggedOut = ({ setUser }) => {
+const LoggedOut = () => {
   return (
     <nav className="flex justify-end gap-10 m-10">
       <Link

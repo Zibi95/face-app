@@ -1,4 +1,4 @@
-import logo from '../../../assets/face-detection.png';
+import logo from '../../assets/face-detection.png';
 import Tilt from 'react-parallax-tilt';
 import { Link } from 'react-router-dom';
 

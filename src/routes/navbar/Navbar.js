@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom';
 import { Particle } from '../../components/Particle';
 
-import LoggedIn from '../../components/Navbar/components/LoggeIn';
-import LoggedOut from '../../components/Navbar/components/LoggeOut';
+import LoggedIn from '../../components/Navbar/LoggeIn';
+import LoggedOut from '../../components/Navbar/LoggeOut';
 
 const Navbar = ({ userInfo }) => {
   const { user, setUser } = userInfo;
@@ -10,8 +10,7 @@ const Navbar = ({ userInfo }) => {
   return (
     <>
       <Particle />
-
-      {user ? <LoggedIn setUser={setUser} /> : <LoggedOut setUser={setUser} />}
+      {user ? <LoggedIn setUser={setUser} /> : <LoggedOut />}
       <Outlet />
     </>
   );

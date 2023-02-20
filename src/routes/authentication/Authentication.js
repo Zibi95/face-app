@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useHref } from 'react-router-dom';
 
 // Components
-import Register from '../../components/Authentication/components/Register';
-import Signin from '../../components/Authentication/components/Signin';
+import Register from '../../components/Authentication/Register';
+import Signin from '../../components/Authentication/Signin';
 
 const Authentication = ({ setUser }) => {
   const endpoint = useHref();
