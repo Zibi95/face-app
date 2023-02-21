@@ -18,10 +18,10 @@ const Signin = ({ setUser, email, password, handleChange, loading, setLoading })
     const user = await SigninCall(credentials);
     setLoading(false);
     if (!Array.isArray(user)) {
-      return setError("User and password don't match!");
+      setError("User and password don't match!");
     }
     if (user === 'Not enough data') {
-      return setError('You should fill all the inputs');
+      setError('You should fill all the inputs');
     }
     if (Array.isArray(user)) {
       setUser(user[0]);

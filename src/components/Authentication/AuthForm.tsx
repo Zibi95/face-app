@@ -1,6 +1,23 @@
+import { ChangeEventHandler } from 'react';
+
 import Tilt from 'react-parallax-tilt';
 
-const AuthForm = ({ inputs, handleSubmit, buttonName, error }) => {
+type AuthFormProps = {
+  inputs: Inputs[];
+  handleSubmit: () => void;
+  buttonName: string;
+  error: string;
+};
+
+type Inputs = {
+  label: string;
+  type: string;
+  name: string;
+  value: string;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+};
+
+const AuthForm = ({ inputs, handleSubmit, buttonName, error }: AuthFormProps): JSX.Element => {
   return (
     <Tilt
       className="flex flex-col mx-auto items-center sm:w-[50%] xl:w-[25%] w-[90%] gap-4 px-20 py-24 border border-black shadow-2xl }"
