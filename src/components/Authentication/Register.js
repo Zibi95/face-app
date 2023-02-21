@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { RegisterCall } from './auth.helper';
+import { Authentication } from './auth.helper';
 import AuthForm from './AuthForm';
 import { Loader } from '../Loader';
 
@@ -24,9 +24,10 @@ const Register = ({ setUser, email, password, handleChange, loading, setLoading 
       setLoading(false);
       return setError("Passwords don't match");
     }
-    const user = await RegisterCall(credentials);
+    const user = await Authentication('http://localhost:3000/register', credentials);
     setLoading(false);
-    if (user === 'Email already used') {
+    console.log(user);
+    if (user?.code === '23505') {
       return setError('Email already in use');
     }
     if (user === 'Not enough data') {

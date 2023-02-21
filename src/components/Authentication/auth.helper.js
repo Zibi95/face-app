@@ -1,4 +1,4 @@
-export async function RegisterCall(credentials) {
+export async function Authentication(url, credentials) {
   const fetchOptions = {
     method: 'POST',
     headers: {
@@ -7,28 +7,10 @@ export async function RegisterCall(credentials) {
     body: JSON.stringify(credentials),
   };
   try {
-    const response = await fetch('https://face-app-api.onrender.com/register', fetchOptions);
-    const data = await response.json();
-    return data;
+    const response = await fetch(url, fetchOptions);
+    const user = await response.json();
+    return user;
   } catch (error) {
-    console.log(error);
-  }
-}
-
-export async function SigninCall(credentials) {
-  const fetchOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(credentials),
-  };
-
-  try {
-    const response = await fetch('https://face-app-api.onrender.com/signin', fetchOptions);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log(error);
+    throw error;
   }
 }

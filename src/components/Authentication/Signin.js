@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { SigninCall } from './auth.helper';
+import { Authentication } from './auth.helper';
 import AuthForm from './AuthForm';
 import { Loader } from '../Loader';
 
@@ -15,15 +15,14 @@ const Signin = ({ setUser, email, password, handleChange, loading, setLoading })
       email,
       password,
     };
-    const user = await SigninCall(credentials);
+    const user = await Authentication('http://localhost:3000/signin', credentials);
     setLoading(false);
-    if (!Array.isArray(user)) {
-      setError("User and password don't match!");
+    if (user === 'Wrong credentials') {
+      return setError("User and password don't match!");
     }
     if (user === 'Not enough data') {
-      setError('You should fill all the inputs');
-    }
-    if (Array.isArray(user)) {
+      return setError('You should fill all the inputs!');
+    } else {
       setUser(user[0]);
       navigate('/');
     }

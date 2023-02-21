@@ -18,7 +18,7 @@ const LoggedIn = ({ setUser }) => {
       </Tilt>
 
       <Link
-        to={'/'}
+        to={'/authentication/signin'}
         onClick={() => {
           setUser('');
         }}

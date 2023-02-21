@@ -20,7 +20,7 @@ type Inputs = {
 const AuthForm = ({ inputs, handleSubmit, buttonName, error }: AuthFormProps): JSX.Element => {
   return (
     <Tilt
-      className="flex flex-col mx-auto items-center sm:w-[50%] xl:w-[25%] w-[90%] gap-4 px-20 py-24 border border-black shadow-2xl }"
+      className="flex flex-col mx-auto items-center sm:w-[50%] xl:w-[25%] w-[90%] gap-4 px-20 py-20 border border-black shadow-2xl }"
       tiltAxis="x"
       glareEnable={true}
       glareMaxOpacity={0.1}
