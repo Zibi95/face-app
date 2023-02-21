@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const LoggedOut = () => {
+const LoggedOut = (): JSX.Element => {
   return (
     <nav className="flex justify-end gap-10 m-10">
       <Link

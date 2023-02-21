@@ -1,12 +1,20 @@
+//React
 import { Outlet } from 'react-router-dom';
-import { Particle } from '../../components/Particle';
 
+// Components
+import { Particle } from '../../components/Particle';
 import LoggedIn from '../../components/Navbar/LoggeIn';
 import LoggedOut from '../../components/Navbar/LoggeOut';
 
-const Navbar = ({ userInfo }) => {
-  const { user, setUser } = userInfo;
+// Types
+import { UserData } from '../../App';
 
+type NavbarProps = {
+  user: UserData | string;
+  setUser: React.Dispatch<React.SetStateAction<string | UserData>>;
+};
+
+const Navbar = ({ user, setUser }: NavbarProps) => {
   return (
     <>
       <Particle />
