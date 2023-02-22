@@ -17,9 +17,9 @@ type NavbarProps = {
 const Navbar = ({ user, setUser }: NavbarProps) => {
   return (
     <>
-      <Particle />
       {user ? <LoggedIn setUser={setUser} /> : <LoggedOut />}
       <Outlet />
+      <Particle />
     </>
   );
 };

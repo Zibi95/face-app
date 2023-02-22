@@ -77,13 +77,16 @@ const Register = ({ setUser, email, password, handleChange, loading, setLoading 
   return (
     <>
       <h2 className="mb-4 text-4xl font-bold text-center text-white">Register</h2>
-      <AuthForm
-        inputs={inputs}
-        buttonName={'Register'}
-        handleSubmit={handleSubmit}
-        error={error}
-      />
-      {loading && <Loader />}
+      {loading ? (
+        <Loader />
+      ) : (
+        <AuthForm
+          inputs={inputs}
+          buttonName={'Register'}
+          handleSubmit={handleSubmit}
+          error={error}
+        />
+      )}
     </>
   );
 };

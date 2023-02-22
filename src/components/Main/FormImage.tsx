@@ -1,8 +1,11 @@
 import { useState } from 'react';
-
 import Tilt from 'react-parallax-tilt';
 
-function FormImage({ handleSubmit }) {
+type FormImageProps = {
+  handleSubmit(e: React.SyntheticEvent<HTMLFormElement>): void;
+};
+
+function FormImage({ handleSubmit }: FormImageProps) {
   const [inputValue, setInputValue] = useState('');
 
   return (

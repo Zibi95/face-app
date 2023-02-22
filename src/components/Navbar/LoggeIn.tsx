@@ -1,8 +1,15 @@
-import logo from '../../assets/face-detection.png';
+//React modules
 import Tilt from 'react-parallax-tilt';
 import { Link } from 'react-router-dom';
+//png
+import logo from '../../assets/face-detection.png';
+//Types
+import { UserData } from '../../App';
+type LoggedInProps = {
+  setUser: React.Dispatch<React.SetStateAction<string | UserData>>;
+};
 
-const LoggedIn = ({ setUser }) => {
+const LoggedIn = ({ setUser }: LoggedInProps) => {
   return (
     <nav className="flex justify-between m-10">
       <Tilt

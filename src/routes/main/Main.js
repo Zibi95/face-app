@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 // Helper functions
 import { fetchClarifaiFaceDetection, calculateFaceLocation } from './main.helper';
 // Components
@@ -12,13 +13,13 @@ function Main({ user }) {
   const [imageUrl, setImageUrl] = useState('');
   const [box, setBox] = useState([]);
   const [error, setError] = useState('');
-  const [status, setStatus] = useState('idle');
+  const [loading, setLoading] = useState(false);
 
   const initialState = () => {
     setImageUrl('');
     setBox([]);
     setError('');
-    setStatus('idle');
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -29,61 +30,42 @@ function Main({ user }) {
 
   const handleSubmit = async event => {
     event.preventDefault();
+    initialState();
+    setLoading(true);
     const imageUrl = event.target[0].value;
-    setBox([]);
     setImageUrl(imageUrl);
-    setStatus('loading');
     const data = await fetchClarifaiFaceDetection(imageUrl);
     if (!data.status) {
-      setStatus('rejected');
+      setLoading(false);
       return setError(data);
     }
     setError('');
-    return calculateFaceLocation(data, setBox, setStatus);
+    return calculateFaceLocation(data, setBox, setLoading);
   };
 
-  if (status === 'idle' && user) {
-    return <FormImage handleSubmit={handleSubmit} />;
-  }
-
-  if (status === 'loading') {
+  if (typeof user === 'string')
     return (
-      <>
-        <FormImage handleSubmit={handleSubmit} />
-        <Loader />
-        <DetectionImage
-          hidden={true}
-          imageUrl={imageUrl}
-          box={box}
-        />
-      </>
+      <div className="p-20 mx-auto text-4xl font-bold text-white bg-black bg-opacity-25 shadow-2xl w-fit">
+        LOG IN FIRST!
+        <br />
+        <Link
+          to={'authentication/signin'}
+          className="block p-3 mx-auto mt-5 text-2xl transition-all rounded-lg w-fit bg-b-right hover:bg-b-left hover:-translate-y-1 active:translate-y-0">
+          Sign in!
+        </Link>
+      </div>
     );
-  }
 
-  if (status === 'resolved') {
-    return (
-      <>
-        <FormImage handleSubmit={handleSubmit} />
-        <DetectionImage
-          hidden={false}
-          imageUrl={imageUrl}
-          box={box}
-        />
-      </>
-    );
-  }
-
-  if (status === 'rejected') {
-    return (
-      <>
-        <FormImage handleSubmit={handleSubmit} />
-        <div className="text-2xl font-bold text-center text-white">{error}, try again!</div>
-      </>
-    );
-  }
   return (
     <>
-      <div className="text-2xl font-bold text-center text-white">LOG IN FIRST!</div>
+      <FormImage handleSubmit={handleSubmit} />
+      {loading && <Loader />}
+      {error && <div className="text-2xl font-bold text-center text-white">{error}, try again!</div>}
+      <DetectionImage
+        hidden={loading}
+        imageUrl={imageUrl}
+        box={box}
+      />
     </>
   );
 }

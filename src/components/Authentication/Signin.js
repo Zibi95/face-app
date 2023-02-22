@@ -48,13 +48,16 @@ const Signin = ({ setUser, email, password, handleChange, loading, setLoading })
   return (
     <>
       <h2 className="mb-4 text-4xl font-bold text-center text-white">Sign In</h2>
-      <AuthForm
-        inputs={inputs}
-        buttonName={'Login'}
-        handleSubmit={handleSubmit}
-        error={error}
-      />
-      {loading && <Loader />}
+      {loading ? (
+        <Loader />
+      ) : (
+        <AuthForm
+          inputs={inputs}
+          buttonName={'Login'}
+          handleSubmit={handleSubmit}
+          error={error}
+        />
+      )}
     </>
   );
 };

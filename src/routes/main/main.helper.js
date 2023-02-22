@@ -18,7 +18,7 @@ export async function fetchClarifaiFaceDetection(imageUrl) {
 }
 
 // Function that calculate face location
-export function calculateFaceLocation(data, setBox, setStatus) {
+export function calculateFaceLocation(data, setBox, setLoading) {
   const image = document.getElementById('inputImage');
   const width = Number(image.width);
   const height = Number(image.height);
@@ -37,6 +37,6 @@ export function calculateFaceLocation(data, setBox, setStatus) {
         bottomRow: height - bottom_row * height,
       },
     ]);
-    setStatus('resolved');
+    setLoading(false);
   });
 }
