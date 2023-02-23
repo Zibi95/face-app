@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 // Helper functions
-import { fetchClarifaiFaceDetection, calculateFaceLocation } from './main.helper';
+import { fetchClarifaiFaceDetection, calculateFaceLocation, incrementEntries } from './main.helper';
 // Components
 import FormImage from '../../components/Main/FormImage';
 import DetectionImage from '../../components/Main/DetectionImage';
@@ -19,7 +19,7 @@ export type Box = {
   bottomRow: number;
 };
 
-function Main({ user }: { user: UserData | string }) {
+function Main({ user, setUser }: { user: UserData; setUser: React.Dispatch<React.SetStateAction<string | UserData>> }) {
   const [imageUrl, setImageUrl] = useState('');
   const [box, setBox] = useState<Box[]>([]);
   const [error, setError] = useState('');
@@ -38,17 +38,18 @@ function Main({ user }: { user: UserData | string }) {
     };
   }, []);
 
-  const handleSubmit = async (inputValue: string) => {
+  const handleSubmit = async (imageUrl: string) => {
+    const data: Awaited<string | Clarifai> = await fetchClarifaiFaceDetection(imageUrl);
     initialState();
     setLoading(true);
-    const imageUrl = inputValue;
     setImageUrl(imageUrl);
-    const data: Awaited<string | Clarifai> = await fetchClarifaiFaceDetection(imageUrl);
     if (typeof data === 'string') {
       setLoading(false);
       return setError(data);
     }
+    const userUpdated: Awaited<UserData> = await incrementEntries(user);
     setError('');
+    setUser(userUpdated);
     return calculateFaceLocation(data, setBox, setLoading);
   };
 

@@ -21,7 +21,7 @@ export type UserData = {
 
 function App() {
   const [user, setUser] = useState<UserData | string>('');
-
+  console.log(user);
   return (
     <Routes>
       <Route
@@ -34,7 +34,12 @@ function App() {
         }>
         <Route
           index
-          element={<Main user={user} />}
+          element={
+            <Main
+              user={user as UserData}
+              setUser={setUser}
+            />
+          }
         />
         <Route
           path="authentication/*"

@@ -1,6 +1,8 @@
 //Type
 import { Output } from './apiType';
 import { Box } from './Main';
+import { UserData } from '../../App';
+
 export type Clarifai = {
   outputs: Output[];
 };
@@ -49,4 +51,23 @@ export function calculateFaceLocation(
     ]);
     setLoading(false);
   });
+}
+
+export async function incrementEntries(user: UserData) {
+  const { id } = user;
+  const putOptions = {
+    method: 'put',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id }),
+  };
+  try {
+    if (id) {
+      const response = await fetch('http://localhost:3000/image', putOptions);
+      return await response.json();
+    }
+  } catch (err: any) {
+    return err;
+  }
 }
