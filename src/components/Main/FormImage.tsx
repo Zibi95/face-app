@@ -15,7 +15,7 @@ function FormImage({ handleSubmit }: FormImageProps) {
         handleSubmit(inputValue);
         setInputValue('');
       }}
-      className="flex justify-center w-9/12 p-5 mx-auto rounded-md mt-44 bg-blend-luminosity">
+      className="flex justify-center w-9/12 p-5 mx-auto rounded-md mt-28 bg-blend-luminosity">
       <input
         className="w-4/5 p-3 mr-3 "
         type="text"

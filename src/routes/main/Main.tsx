@@ -11,6 +11,7 @@ import '../../App.css';
 // Type
 import { UserData } from '../../App';
 import { Clarifai } from './main.helper';
+import EntriesInfo from '../../components/Main/EntriesInfo.component';
 
 export type Box = {
   leftCol: number;
@@ -39,9 +40,10 @@ function Main({ user, setUser }: { user: UserData; setUser: React.Dispatch<React
   }, []);
 
   const handleSubmit = async (imageUrl: string) => {
-    const data: Awaited<string | Clarifai> = await fetchClarifaiFaceDetection(imageUrl);
     initialState();
     setLoading(true);
+    const data: Awaited<string | Clarifai> = await fetchClarifaiFaceDetection(imageUrl);
+
     setImageUrl(imageUrl);
     if (typeof data === 'string') {
       setLoading(false);
@@ -68,6 +70,7 @@ function Main({ user, setUser }: { user: UserData; setUser: React.Dispatch<React
 
   return (
     <>
+      <EntriesInfo user={user} />
       <FormImage handleSubmit={handleSubmit} />
       {loading && <Loader />}
       {error && <div className="text-2xl font-bold text-center text-white">{error}, try again!</div>}
