@@ -8,10 +8,20 @@ import DetectionImage from '../../components/Main/DetectionImage';
 import { Loader } from '../../components/Loader';
 // Style
 import '../../App.css';
+// Type
+import { UserData } from '../../App';
+import { Clarifai } from './main.helper';
 
-function Main({ user }) {
+export type Box = {
+  leftCol: number;
+  topRow: number;
+  rightCol: number;
+  bottomRow: number;
+};
+
+function Main({ user }: { user: UserData | string }) {
   const [imageUrl, setImageUrl] = useState('');
-  const [box, setBox] = useState([]);
+  const [box, setBox] = useState<Box[]>([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -28,14 +38,13 @@ function Main({ user }) {
     };
   }, []);
 
-  const handleSubmit = async event => {
-    event.preventDefault();
+  const handleSubmit = async (inputValue: string) => {
     initialState();
     setLoading(true);
-    const imageUrl = event.target[0].value;
+    const imageUrl = inputValue;
     setImageUrl(imageUrl);
-    const data = await fetchClarifaiFaceDetection(imageUrl);
-    if (!data.status) {
+    const data: Awaited<string | Clarifai> = await fetchClarifaiFaceDetection(imageUrl);
+    if (typeof data === 'string') {
       setLoading(false);
       return setError(data);
     }

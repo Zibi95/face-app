@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Tilt from 'react-parallax-tilt';
 
 type FormImageProps = {
-  handleSubmit(e: React.SyntheticEvent<HTMLFormElement>): void;
+  handleSubmit: (input: string) => void;
 };
 
 function FormImage({ handleSubmit }: FormImageProps) {
@@ -11,7 +11,8 @@ function FormImage({ handleSubmit }: FormImageProps) {
   return (
     <form
       onSubmit={event => {
-        handleSubmit(event);
+        event.preventDefault();
+        handleSubmit(inputValue);
         setInputValue('');
       }}
       className="flex justify-center w-9/12 p-5 mx-auto rounded-md mt-44 bg-blend-luminosity">

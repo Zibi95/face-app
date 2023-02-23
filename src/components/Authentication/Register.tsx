@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+// helper f-ction
 import { Authentication } from './auth.helper';
+// Components
 import AuthForm from './AuthForm';
 import { Loader } from '../Loader';
+// Types
+import { AuthenticationProps } from './Signin';
 
-const Register = ({ setUser, email, password, handleChange, loading, setLoading }) => {
+const Register = ({ setUser, email, password, handleChange, loading, setLoading }: AuthenticationProps) => {
   const navigate = useNavigate();
 
   const [name, setName] = useState('');
@@ -39,7 +42,7 @@ const Register = ({ setUser, email, password, handleChange, loading, setLoading 
     }
   };
 
-  const onChangeRegister = event => {
+  const onChangeRegister: React.ChangeEventHandler<HTMLInputElement> = event => {
     event.target.name === 'name' ? setName(event.target.value) : setConfirmPassword(event.target.value);
   };
 

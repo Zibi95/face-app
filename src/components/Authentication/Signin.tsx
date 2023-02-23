@@ -1,11 +1,23 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+// helper f-ction
 import { Authentication } from './auth.helper';
+// Components
 import AuthForm from './AuthForm';
 import { Loader } from '../Loader';
+// types
+import { UserData } from '../../App';
 
-const Signin = ({ setUser, email, password, handleChange, loading, setLoading }) => {
+export type AuthenticationProps = {
+  setUser: React.Dispatch<React.SetStateAction<string | UserData>>;
+  email: string;
+  password: string;
+  handleChange: React.ChangeEventHandler<HTMLInputElement>;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Signin = ({ setUser, email, password, handleChange, loading, setLoading }: AuthenticationProps) => {
   const navigate = useNavigate();
   const [error, setError] = useState('');
 

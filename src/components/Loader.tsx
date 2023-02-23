@@ -1,6 +1,6 @@
 import { Dna } from 'react-loader-spinner';
 
-export const Loader = (): JSX.Element => {
+export const Loader = () => {
   return (
     <div className="flex justify-center mt-10 align-top">
       <Dna

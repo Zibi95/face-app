@@ -1,4 +1,10 @@
-export async function Authentication(url, credentials) {
+type Credentials = {
+  name?: string;
+  password: string;
+  email: string;
+};
+
+export async function Authentication(url: string, credentials: Credentials) {
   const fetchOptions = {
     method: 'POST',
     headers: {

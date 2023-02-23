@@ -1,5 +1,12 @@
+//Type
+import { Output } from './apiType';
+import { Box } from './Main';
+export type Clarifai = {
+  outputs: Output[];
+};
+
 //Function that fetch from backend API call to clarifai face-detection model
-export async function fetchClarifaiFaceDetection(imageUrl) {
+export async function fetchClarifaiFaceDetection(imageUrl: string): Promise<Clarifai | string> {
   const postOptions = {
     method: 'post',
     headers: {
@@ -10,18 +17,21 @@ export async function fetchClarifaiFaceDetection(imageUrl) {
   try {
     if (!imageUrl) return 'I need an image url';
     const response = await fetch('http://localhost:3000/imageurl', postOptions);
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.log(err);
+    return await response.json();
+  } catch (err: any) {
+    return err;
   }
 }
 
 // Function that calculate face location
-export function calculateFaceLocation(data, setBox, setLoading) {
-  const image = document.getElementById('inputImage');
-  const width = Number(image.width);
-  const height = Number(image.height);
+export function calculateFaceLocation(
+  data: Clarifai,
+  setBox: React.Dispatch<React.SetStateAction<Box[]>>,
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+) {
+  const image: HTMLImageElement = document.getElementById('inputImage') as HTMLImageElement;
+  const width: number = Number(image.width);
+  const height: number = Number(image.height);
 
   const clarifaiFaces = data.outputs[0].data.regions?.map(region => region);
 

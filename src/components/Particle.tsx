@@ -1,6 +1,6 @@
 import ParticlesBg from 'particles-bg';
 
-export const Particle = (): JSX.Element => {
+export const Particle = () => {
   return (
     <>
       <ParticlesBg

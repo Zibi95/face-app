@@ -1,6 +1,13 @@
 import '../../App.css';
 
-const DetectionImage = ({ imageUrl, box, hidden }) => {
+import { Box } from '../../routes/main/Main';
+type DetectionImageProps = {
+  imageUrl: string;
+  box: Box[];
+  hidden: boolean;
+};
+
+const DetectionImage = ({ imageUrl, box, hidden }: DetectionImageProps) => {
   return (
     <>
       <div className="relative flex justify-center">
