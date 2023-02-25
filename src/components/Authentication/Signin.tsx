@@ -12,6 +12,7 @@ export type AuthenticationProps = {
   setUser: React.Dispatch<React.SetStateAction<string | UserData>>;
   email: string;
   password: string;
+
   handleChange: React.ChangeEventHandler<HTMLInputElement>;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
