@@ -28,7 +28,7 @@ const Signin = ({ setUser, email, password, handleChange, loading, setLoading }:
       email,
       password,
     };
-    const user = await Authentication('http://localhost:3000/signin', credentials);
+    const user = await Authentication('https://face-app-api.onrender.com/signin', credentials);
     setLoading(false);
     if (user === 'Wrong credentials') {
       return setError("User and password don't match!");

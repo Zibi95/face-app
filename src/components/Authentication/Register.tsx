@@ -27,7 +27,7 @@ const Register = ({ setUser, email, password, handleChange, loading, setLoading 
       setLoading(false);
       return setError("Passwords don't match");
     }
-    const user = await Authentication('http://localhost:3000/register', credentials);
+    const user = await Authentication('https://face-app-api.onrender.com/register', credentials);
     setLoading(false);
     console.log(user);
     if (user?.code === '23505') {
