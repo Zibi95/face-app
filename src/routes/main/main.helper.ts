@@ -18,7 +18,7 @@ export async function fetchClarifaiFaceDetection(imageUrl: string): Promise<Clar
   };
   try {
     if (!imageUrl) return 'I need an image url';
-    const response = await fetch('http://localhost:3000/imageurl', postOptions);
+    const response = await fetch('https://face-app-api.onrender.com/imageurl', postOptions);
     return await response.json();
   } catch (err: any) {
     return err;
@@ -64,7 +64,7 @@ export async function incrementEntries(user: UserData) {
   };
   try {
     if (id) {
-      const response = await fetch('http://localhost:3000/image', putOptions);
+      const response = await fetch('https://face-app-api.onrender.com/image', putOptions);
       return await response.json();
     }
   } catch (err: any) {
