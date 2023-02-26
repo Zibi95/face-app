@@ -29,7 +29,6 @@ const Register = ({ setUser, email, password, handleChange, loading, setLoading 
     }
     const user = await Authentication('https://face-app-api.onrender.com/register', credentials);
     setLoading(false);
-    console.log(user);
     if (user?.code === '23505') {
       return setError('Email already in use');
     }

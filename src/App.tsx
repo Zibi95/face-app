@@ -21,7 +21,6 @@ export type UserData = {
 
 function App() {
   const [user, setUser] = useState<UserData | string>('');
-  console.log(user);
   return (
     <Routes>
       <Route
